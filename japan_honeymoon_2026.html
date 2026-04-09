@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Honeymoon 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #faf9f6; --surface: #ffffff; --border: rgba(0,0,0,0.08); --border-strong: rgba(0,0,0,0.15);
+    --text-primary: #1a1814; --text-secondary: #6b6660; --text-tertiary: #a09c98;
+    --green: #1D9E75; --green-light: #E1F5EE; --green-text: #0F6E56;
+    --amber: #EF9F27; --amber-light: #FAEEDA; --amber-text: #854F0B;
+    --red: #E24B4A; --red-light: #FCEBEB; --red-text: #A32D2D;
+    --blue: #378ADD; --blue-light: #E6F1FB; --blue-text: #185FA5;
+    --purple: #7F77DD; --purple-light: #EEEDFE; --purple-text: #3C3489;
+    --pink: #D4537E; --pink-light: #FBEAF0; --pink-text: #72243E;
+    --coral: #D85A30; --coral-light: #FAECE7; --coral-text: #993C1D;
+    --gray-light: #f1efeb; --gray-text: #6b6660;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); }
+
+  /* TAB NAV */
+  .tab-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 24px; display: flex; gap: 0; }
+  .tab-btn { padding: 14px 20px; font-size: 13px; font-weight: 500; color: var(--text-secondary); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; white-space: nowrap; }
+  .tab-btn:hover { color: var(--text-primary); }
+  .tab-btn.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* SHARED PAGE WRAPPER */
+  .page { max-width: 780px; margin: 0 auto; padding: 36px 24px 80px; }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 8px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 38px; font-weight: 400; line-height: 1.1; margin-bottom: 8px; }
+  h1 em { font-style: italic; color: var(--green); }
+  .header-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; }
+
+  /* FLIGHTS */
+  .flights { display: flex; flex-direction: column; gap: 6px; }
+  .flight-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; }
+  .fl { font-size: 11px; color: var(--text-tertiary); min-width: 60px; }
+  .fr { font-size: 13px; font-weight: 500; }
+  .ft { font-size: 12px; color: var(--text-secondary); margin-left: auto; }
+
+  /* LEGEND */
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; padding: 12px 16px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; }
+  .li { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+  .ld { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* SECTION */
+  .section { margin-bottom: 40px; }
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .city-badge { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
+  .bt { background: var(--blue-light); color: var(--blue-text); }
+  .bf { background: var(--green-light); color: var(--green-text); }
+  .bk { background: var(--amber-light); color: var(--amber-text); }
+  .section-title-serif { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; }
+  .hotel-info { font-size: 11px; color: var(--text-tertiary); margin-left: auto; }
+
+  /* DAY BLOCK */
+  .day-block { margin-bottom: 10px; border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .day-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--gray-light); cursor: pointer; user-select: none; transition: background .15s; }
+  .day-header:hover { background: #ebe9e4; }
+  .day-date { font-size: 13px; font-weight: 500; }
+  .day-sub { font-size: 11px; color: var(--text-secondary); }
+  .day-toggle { margin-left: auto; font-size: 11px; color: var(--text-tertiary); }
+  .day-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; background: var(--surface); }
+  .time-row { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: start; }
+  .time-label { font-size: 11px; color: var(--text-tertiary); padding-top: 3px; }
+  .event-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .event-sub { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 999px; border: 0.5px solid var(--border); background: var(--gray-light); color: var(--gray-text); }
+  .tag.food { background: var(--green-light); color: var(--green-text); border-color: #5DCAA5; }
+  .tag.note { background: var(--amber-light); color: var(--amber-text); border-color: var(--amber); }
+  .tag.option { background: var(--coral-light); color: var(--coral-text); border-color: var(--coral); }
+  .tag.shrine { background: var(--purple-light); color: var(--purple-text); border-color: var(--purple); }
+  .tag.romantic { background: var(--pink-light); color: var(--pink-text); border-color: var(--pink); }
+  .tag.new { background: var(--blue-light); color: var(--blue-text); border-color: var(--blue); }
+  .divider { height: 0.5px; background: var(--border); }
+
+  /* CHECKLIST */
+  .section-title { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 10px; padding-left: 2px; }
+  .item { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: start; padding: 12px 16px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; margin-bottom: 7px; cursor: pointer; transition: opacity .25s, background .15s; user-select: none; }
+  .item:hover { background: #fdfcfa; }
+  .item.done { opacity: 0.42; }
+  .item.done .item-title { text-decoration: line-through; color: var(--text-tertiary); }
+  .check { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--border-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: background .15s, border-color .15s; }
+  .check.done { background: var(--green); border-color: var(--green); }
+  .check.done::after { content: ''; width: 10px; height: 6px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translate(1px, -1px); display: block; }
+  .item-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 3px; line-height: 1.4; }
+  .item-sub { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+  .item-note { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+  .badge { font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .badge-red    { background: var(--red-light);    color: var(--red-text);    border: 0.5px solid #f09595; }
+  .badge-amber  { background: var(--amber-light);  color: var(--amber-text);  border: 0.5px solid var(--amber); }
+  .badge-blue   { background: var(--blue-light);   color: var(--blue-text);   border: 0.5px solid #85B7EB; }
+  .badge-purple { background: var(--purple-light); color: var(--purple-text); border: 0.5px solid var(--purple); }
+  .badge-green  { background: var(--green-light);  color: var(--green-text);  border: 0.5px solid #5DCAA5; }
+  .badge-gray   { background: var(--gray-light);   color: var(--gray-text);   border: 0.5px solid rgba(0,0,0,0.1); }
+  .prog-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+  .prog-text { font-size: 13px; color: var(--text-secondary); white-space: nowrap; min-width: 120px; }
+  .prog-text strong { color: var(--text-primary); font-weight: 500; }
+  .prog-bar { flex: 1; height: 6px; background: var(--gray-light); border-radius: 999px; overflow: hidden; }
+  .prog-fill { height: 100%; background: var(--green); border-radius: 999px; transition: width .4s ease; }
+  .pct { font-size: 13px; font-weight: 500; color: var(--green); min-width: 36px; text-align: right; }
+  .alert { background: var(--red-light); border: 0.5px solid #f09595; border-radius: 12px; padding: 16px 18px; margin-bottom: 28px; }
+  .alert-title { font-size: 13px; font-weight: 500; color: var(--red-text); margin-bottom: 6px; }
+  .alert-sub { font-size: 12px; color: #c45c5c; line-height: 1.6; margin-bottom: 14px; }
+  .window-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .win { background: rgba(255,255,255,0.6); border: 0.5px solid #f09595; border-radius: 8px; padding: 10px 12px; }
+  .win-label { font-size: 10px; color: var(--red-text); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 3px; }
+  .win-date { font-size: 12px; color: var(--red-text); font-weight: 500; }
+  .win-rest { font-size: 11px; color: #c45c5c; margin-top: 2px; }
+
+  /* SHOPPING LIST */
+  .shop-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .shop-section { margin-bottom: 28px; }
+  .shop-section-title { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 10px; padding-left: 2px; }
+  .shop-items { display: flex; flex-direction: column; gap: 6px; }
+  .shop-item { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 10px 14px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; transition: opacity .2s, background .15s; cursor: pointer; user-select: none; }
+  .shop-item:hover { background: #fdfcfa; }
+  .shop-item.done { opacity: 0.4; }
+  .shop-item.done .shop-item-title { text-decoration: line-through; color: var(--text-tertiary); }
+  .shop-check { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: background .15s; }
+  .shop-check.done { background: var(--green); border-color: var(--green); }
+  .shop-check.done::after { content: ''; width: 9px; height: 5px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translate(1px, -1px); display: block; }
+  .shop-item-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .shop-item-sub { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .shop-item-note { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+  .add-item-row { display: flex; gap: 8px; margin-top: 10px; }
+  .add-input { flex: 1; padding: 8px 12px; font-size: 13px; font-family: var(--font-sans); background: var(--surface); border: 0.5px solid var(--border-strong); border-radius: 8px; color: var(--text-primary); outline: none; }
+  .add-input:focus { border-color: var(--text-primary); }
+  .add-btn { padding: 8px 16px; font-size: 12px; font-weight: 500; background: var(--text-primary); color: white; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+  .add-btn:hover { opacity: 0.85; }
+  .store-pill { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px; background: var(--blue-light); color: var(--blue-text); border: 0.5px solid #85B7EB; margin-right: 4px; margin-top: 3px; }
+  .budget-pill { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px; background: var(--green-light); color: var(--green-text); border: 0.5px solid #5DCAA5; margin-right: 4px; margin-top: 3px; }
+
+  .footer { font-size: 11px; color: var(--text-tertiary); text-align: center; margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('itinerary', this)">🗓 Itinerary</button>
+  <button class="tab-btn" onclick="switchTab('checklist', this)">✅ Booking Checklist</button>
+  <button class="tab-btn" onclick="switchTab('shopping', this)">🛍 Shopping List</button>
+</div>
+
+<!-- ==================== ITINERARY ==================== -->
+<div class="tab-panel active" id="tab-itinerary">
+<div class="page">
+  <div class="header">
+    <div class="eyebrow">October 13–28, 2026</div>
+    <h1>Japan <em>Honeymoon</em></h1>
+    <p class="header-sub">Tokyo · Mt. Fuji · Kyoto · Tokyo</p>
+    <div class="flights">
+      <div class="flight-row"><div class="fl">Outbound</div><div class="fr">IAD → HND</div><div class="ft">Tue 10/13 12:15pm EST → Wed 10/14 3:30pm JST</div></div>
+      <div class="flight-row"><div class="fl">Return</div><div class="fr">HND → IAD</div><div class="ft">Wed 10/28 4:50pm JST → Wed 10/28 4:40pm EST</div></div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="li"><div class="ld" style="background:#1D9E75"></div>Food/drink</div>
+    <div class="li"><div class="ld" style="background:#7F77DD"></div>Temple/shrine</div>
+    <div class="li"><div class="ld" style="background:#D4537E"></div>Romantic</div>
+    <div class="li"><div class="ld" style="background:#EF9F27"></div>Note</div>
+    <div class="li"><div class="ld" style="background:#D85A30"></div>Either/or</div>
+    <div class="li"><div class="ld" style="background:#378ADD"></div>From list</div>
+  </div>
+
+  <!-- TOKYO 1 -->
+  <div class="section">
+    <div class="section-header"><span class="city-badge bt">Tokyo 1</span><span class="section-title-serif">Hyatt Regency Tokyo</span><span class="hotel-info">10/14 → 10/19</span></div>
+    <div class="day-block"><div class="day-header" onclick="tog('d14')"><span class="day-date">Wed 10/14 — Arrival Day</span><span class="day-sub" style="margin-left:8px">Omoide Yokocho · Golden Gai</span><span class="day-toggle" id="d14-t">▸</span></div><div class="day-body" id="d14" style="display:none"><div class="time-row"><div class="time-label">3:30pm</div><div><div class="event-title">Land at Haneda</div><div class="event-sub">QR customs ready. Exchange money at 7-Eleven ATM.</div><div class="tags"><span class="tag note">QR customs</span><span class="tag note">7-Eleven exchange</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">5:30pm</div><div><div class="event-title">Check in — Hyatt Regency</div><div class="event-sub">Drop bags, freshen up. No napping — push through to bedtime.</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Dinner — Omoide Yokocho</div><div class="event-sub">10 min walk. Tiny smoky yakitori stalls, post-war Tokyo atmosphere.</div><div class="tags"><span class="tag food">Yakitori</span><span class="tag note">10 min from hotel</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00pm</div><div><div class="event-title">One drink — Golden Gai</div><div class="event-sub">Right next to Omoide Yokocho. One tiny bar then bed.</div><div class="tags"><span class="tag note">10 min from hotel</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('d15')"><span class="day-date">Thu 10/15 — Jet Lag Day</span><span class="day-sub" style="margin-left:8px">Meiji Shrine · Showa Era Kissaten · Easy dinner</span><span class="day-toggle" id="d15-t">▸</span></div><div class="day-body" id="d15" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Meiji Shrine</div><div class="event-sub">Forested park, almost empty at 7am.</div><div class="tags"><span class="tag shrine">7am</span><span class="tag romantic">Peaceful</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:30am</div><div><div class="event-title">Coffee — Showa Era Kissaten</div><div class="event-sub">1975 vintage pour-over coffee shop. Steps from Meiji.</div><div class="tags"><span class="tag food">Pour-over</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Harajuku & Omotesando wander</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:00pm</div><div><div class="event-title">Rest at hotel — nap allowed</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Dinner</div><div class="tags"><span class="tag option">Shinjuku Sushi Bar Nigirite</span><span class="tag option">Ramen Break Beats</span><span class="tag note">Both steps from hotel</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00pm</div><div><div class="event-title">Optional — Golden Gai nightcap</div><div class="tags"><span class="tag note">10 min walk</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('d16')"><span class="day-date">Fri 10/16 — Gardens + TeamLab Planets</span><span class="day-sub" style="margin-left:8px">Shinjuku Gyoen · Hie Shrine · Imperial Palace · National Art Center · TeamLab Planets · Wagyu dinner</span><span class="day-toggle" id="d16-t">▸</span></div><div class="day-body" id="d16" style="display:none"><div class="time-row"><div class="time-label">8:00am</div><div><div class="event-title">Shinjuku Gyoen National Garden</div><div class="event-sub">Fall foliage starting. French, English and Japanese garden sections.</div><div class="tags"><span class="tag romantic">Peak fall foliage</span><span class="tag note">Opens 9am</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Akasaka Imperial Gardens</div><div class="event-sub">Taxi over ~15 min. Beautiful landscaped imperial garden.</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:00pm</div><div><div class="event-title">Hie Shrine — next door to Akasaka</div><div class="event-sub">Red torii tunnel, mini Fushimi Inari. 45 min, zero extra travel.</div><div class="tags"><span class="tag shrine">Next door to Akasaka</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:30pm</div><div><div class="event-title">Imperial Palace East Gardens</div><div class="event-sub">Former castle grounds, stone walls, moats. Free entry.</div><div class="tags"><span class="tag note">Free entry</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:30pm</div><div><div class="event-title">National Art Center — Roppongi</div><div class="event-sub">One of Japan's largest art spaces, stunning Kisho Kurokawa architecture.</div><div class="tags"><span class="tag new">From original list</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">5:00pm</div><div><div class="event-title">TeamLab Planets — Toyosu</div><div class="event-sub">The bucket list TeamLab — walk through water and immersive light rooms. Deeply romantic. Short taxi from Roppongi to Toyosu.</div><div class="tags"><span class="tag romantic">Walk through water rooms</span><span class="tag note">Book tickets in advance</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Taxi home via Shibuya Crossing</div><div class="tags"><span class="tag note">Shibuya Crossing en route</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30pm</div><div><div class="event-title">Dinner — Shishikura (A5 Wagyu Shabu-Shabu)</div><div class="event-sub">A5 Kagoshima black beef. Japanese restaurants run until 10–11pm.</div><div class="tags"><span class="tag food">A5 Wagyu</span><span class="tag romantic">Special dinner</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00pm</div><div><div class="event-title">Drinks — Banten Bar</div><div class="tags"><span class="tag food">Cocktails</span><span class="tag romantic">Intimate 8-seat vinyl bar</span><span class="tag note">Cash friendly</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('d17')"><span class="day-date">Sat 10/17 — Day Trip to Nikko</span><span class="day-sub" style="margin-left:8px">Tosho-gu · Taiyū-in · Kegon Falls · Lake Chuzenji</span><span class="day-toggle" id="d17-t">▸</span></div><div class="day-body" id="d17" style="display:none"><div class="time-row"><div class="time-label">6:30am</div><div><div class="event-title">Depart Tobu Asakusa → Nikko</div><div class="event-sub">~2 hrs. Buy tickets 10/16 evening. Left side seats.</div><div class="tags"><span class="tag note">Buy tickets night before</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30am</div><div><div class="event-title">Shinkyo Bridge</div><div class="tags"><span class="tag romantic">Peak fall colors</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00am</div><div><div class="event-title">Tosho-gu Shrine — UNESCO</div><div class="event-sub">Japan's most ornate shrine. Buy tickets at station.</div><div class="tags"><span class="tag shrine">UNESCO</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Taiyū-in Mausoleum</div><div class="event-sub">Steps from Tosho-gu, less crowded, equally beautiful.</div><div class="tags"><span class="tag shrine">Hidden gem</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:30pm</div><div><div class="event-title">Lunch — yuba in Nikko town</div><div class="tags"><span class="tag food">Nikko local specialty</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">2:00pm</div><div><div class="event-title">Kegon Falls & Lake Chuzenji</div><div class="event-sub">97m waterfall, alpine lake, stunning fall foliage.</div><div class="tags"><span class="tag romantic">Stunning fall colors</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">4:30pm</div><div><div class="event-title">Depart → Tokyo</div><div class="tags"><span class="tag note">Leave by 4:30 — weekend traffic</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:30pm</div><div><div class="event-title">Dinner — Nakiryu Ramen (Michelin-starred)</div><div class="event-sub">Cash only, no reservations — arrive early.</div><div class="tags"><span class="tag food">Michelin-starred ramen</span><span class="tag note">Cash only · Arrive early</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('d18')"><span class="day-date">Sun 10/18 — Shrines + Oedo Market + PokéPark</span><span class="day-sub" style="margin-left:8px">Nezu · Kanda · Kyu Asakura · Oedo Market · PokéPark KANTO · Jazz</span><span class="day-toggle" id="d18-t">▸</span></div><div class="day-body" id="d18" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Nezu Shrine</div><div class="event-sub">Vermilion torii gate tunnel, empty at 7am.</div><div class="tags"><span class="tag shrine">Torii gates</span><span class="tag romantic">Photogenic</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30am</div><div><div class="event-title">Kanda Myoujin Shrine</div><div class="event-sub">Short walk from Nezu. 1,300-year-old shrine.</div><div class="tags"><span class="tag shrine">1,300 years old</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:30am</div><div><div class="event-title">Coffee — Coffee Mameya Kakeru</div><div class="tags"><span class="tag food">Specialty coffee</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:30am</div><div><div class="event-title">Kyu Asakura House</div><div class="event-sub">1919 traditional house, zen chill vibe. Daikanyama.</div><div class="tags"><span class="tag romantic">Zen chill</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:00pm</div><div><div class="event-title">Oedo Antique Market — confirmed 10/18 ✓</div><div class="event-sub">Japan's largest outdoor antique market. Tokyo International Forum near Ginza. 9am–4pm, free entry, cash only.</div><div class="tags"><span class="tag note">Free · Cash only · Near Ginza</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">2:00pm</div><div><div class="event-title">Lunch — Onigiri Bongo or Mamma</div><div class="tags"><span class="tag food">Onigiri</span><span class="tag option">Bongo</span><span class="tag option">Mamma</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:00pm</div><div><div class="event-title">PokéPark KANTO — Yomiuriland</div><div class="event-sub">World's first permanent Pokémon park. 25 min from Shinjuku. Pokémon Forest + Sedge Town.</div><div class="tags"><span class="tag romantic">World's first Pokémon park</span><span class="tag note">25 min from Shinjuku · Book in advance</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:30pm</div><div><div class="event-title">Dinner — Izumo Ikebukuro (Unagi Bowl)</div><div class="tags"><span class="tag food">Grilled eel</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00pm</div><div><div class="event-title">Jazz night</div><div class="tags"><span class="tag romantic">Live jazz</span><span class="tag option">Jazz Polkadots</span><span class="tag option">Jazz Pit Inn</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('d19')"><span class="day-date">Mon 10/19 — Check-Out → Mt. Fuji</span><span class="day-sub" style="margin-left:8px">Bakery · Tsukiji · Takkyubin bags · Kawaguchiko</span><span class="day-toggle" id="d19-t">▸</span></div><div class="day-body" id="d19" style="display:none"><div class="time-row"><div class="time-label">7:30am</div><div><div class="event-title">Breakfast — Tokyo bakery</div><div class="tags"><span class="tag food">Last Tokyo morning</span><span class="tag option">AMAM DACOTAN</span><span class="tag option">Eteco Bread</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00am</div><div><div class="event-title">Tsukiji Fish Market</div><div class="tags"><span class="tag food">Tuna flights</span><span class="tag food">Wagyu spears</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Check out — Hyatt Regency</div><div class="event-sub">Forward big bags to OMO5 Kyoto via Takkyubin (ask concierge night before, ~$15/bag). Take small overnight bag to Fufu only.</div><div class="tags"><span class="tag note">Check out 11am</span><span class="tag note">Forward bags to Kyoto via Takkyubin</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:00pm</div><div><div class="event-title">Check in — Fufu Kawaguchiko</div><div class="tags"><span class="tag romantic">Ryokan arrival</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Dinner at hotel — Kaiseki</div><div class="tags"><span class="tag food">Kaiseki included</span></div></div></div></div></div>
+  </div>
+
+  <!-- MT FUJI -->
+  <div class="section">
+    <div class="section-header"><span class="city-badge bf">Mt. Fuji</span><span class="section-title-serif">Fufu Kawaguchiko</span><span class="hotel-info">10/19 → 10/21 · B&D included</span></div>
+    <div class="day-block"><div class="day-header" onclick="tog('f20')"><span class="day-date">Tue 10/20 — Golf + Spa + Onsen</span><span class="day-toggle" id="f20-t">▸</span></div><div class="day-body" id="f20" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Breakfast at hotel</div><div class="tags"><span class="tag food">Included</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:45am</div><div><div class="event-title">Golf — Fuji course</div><div class="tags"><span class="tag note">~7:45am–3pm · Awaiting confirmation</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00am</div><div><div class="event-title">Natalie — Spa day at hotel</div><div class="tags"><span class="tag romantic">Spa day</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:30pm</div><div><div class="event-title">Fuji Yurari Hot Spring</div><div class="tags"><span class="tag romantic">Fuji views from onsen</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Dinner at hotel — Kaiseki</div><div class="tags"><span class="tag food">Included</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('f21')"><span class="day-date">Wed 10/21 — Chureito OR Hakone → Kyoto</span><span class="day-sub" style="margin-left:8px">Pick one based on weather · Takkyubin bags · Shinkansen · Pontocho</span><span class="day-toggle" id="f21-t">▸</span></div><div class="day-body" id="f21" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Breakfast at hotel</div><div class="tags"><span class="tag food">Included</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30am</div><div><div class="event-title">Pick one based on weather that morning</div><div class="event-sub">Clear sky → Chureito Pagoda (iconic Mt. Fuji money shot, 400 steps, ~1 hr). Cloudy → Hakone Ropeway + Hakone Shrine (torii gate in the lake, aerial volcanic views). Don't try both before noon — commit to one.</div><div class="tags"><span class="tag note">Clear = Chureito · Cloudy = Hakone</span><span class="tag note">Pick one — don't try both</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:00pm</div><div><div class="event-title">Check out — Fufu Kawaguchiko</div><div class="event-sub">Forward bags to OMO5 Kyoto via Takkyubin — ask concierge night before. Travel light on Shinkansen with just a daypack.</div><div class="tags"><span class="tag note">Check out 12pm</span><span class="tag note">Forward bags via Takkyubin</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">2:00pm</div><div><div class="event-title">Shinkansen to Kyoto — Green Car</div><div class="event-sub">Use SmartEX app to book. ~1.5 hrs.</div><div class="tags"><span class="tag note">SmartEX app · Green Car</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">4:00pm</div><div><div class="event-title">Check in — OMO5 Kyoto Sanjo</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">6:30pm</div><div><div class="event-title">First Kyoto evening — Pontocho Alley</div><div class="event-sub">Lantern-lit lane along the Kamo River. Most romantic street in Kyoto.</div><div class="tags"><span class="tag romantic">Most romantic street in Kyoto</span><span class="tag food">Dinner along the alley</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00pm</div><div><div class="event-title">Drinks — Komorebino natural wine bar</div><div class="tags"><span class="tag food">Natural wine</span></div></div></div></div></div>
+  </div>
+
+  <!-- KYOTO -->
+  <div class="section">
+    <div class="section-header"><span class="city-badge bk">Kyoto</span><span class="section-title-serif">OMO5 Kyoto Sanjo by Hoshino</span><span class="hotel-info">10/21 → 10/26</span></div>
+    <div class="day-block"><div class="day-header" onclick="tog('k22')"><span class="day-date">Thu 10/22 — Temples & Gion</span><span class="day-sub" style="margin-left:8px">Yasaka · Kennin-ji · Arashiyama · Gion wander · Yakiniku Gosyu</span><span class="day-toggle" id="k22-t">▸</span></div><div class="day-body" id="k22" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Hokan-ji Temple (Yasaka Pagoda)</div><div class="event-sub">Most iconic Kyoto image. 7am for empty shots.</div><div class="tags"><span class="tag shrine">Most iconic Kyoto shot</span><span class="tag note">7am</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30am</div><div><div class="event-title">Kennin-ji Temple — 800 years old</div><div class="event-sub">Dragon ceiling painting. Steps from Yasaka.</div><div class="tags"><span class="tag shrine">800 years old</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00am</div><div><div class="event-title">Coffee — ARABICA Kyoto Arashiyama</div><div class="tags"><span class="tag food">World-class coffee</span><span class="tag romantic">River views</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:30am</div><div><div class="event-title">Adashino Nenbutsu-ji Temple</div><div class="event-sub">8,000 stone Buddha statues. Near Arashiyama.</div><div class="tags"><span class="tag shrine">8,000 Buddhas</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:30pm</div><div><div class="event-title">Lunch — Tempura Gen</div><div class="event-sub">Try Umishen karaage + Gion Tanto egg.</div><div class="tags"><span class="tag food">Tempura</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:30pm</div><div><div class="event-title">Afternoon free — wander Higashiyama</div><div class="event-sub">Stone-paved lanes, Gion shops, relax before dinner.</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:30pm</div><div><div class="event-title">Dinner — Yakiniku Gosyu</div><div class="event-sub">125-year-old grill with garden views.</div><div class="tags"><span class="tag food">125yr old grill</span><span class="tag romantic">Garden views</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:30pm</div><div><div class="event-title">Bar — GOOD morning RECORD BAR</div><div class="tags"><span class="tag food">Record bar</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('k23')"><span class="day-date">Fri 10/23 — Day Trip to Nara</span><span class="day-sub" style="margin-left:8px">Feed the deer · Tiger temple · Gyoza dinner</span><span class="day-toggle" id="k23-t">▸</span></div><div class="day-body" id="k23" style="display:none"><div class="time-row"><div class="time-label">8:00am</div><div><div class="event-title">Train to Nara — 45 min</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:00am</div><div><div class="event-title">Nara Park — feed the deer</div><div class="event-sub">Older, more docile deer. Buy shika senbei.</div><div class="tags"><span class="tag romantic">Feed the deer</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Tiger temple (Tora-ji / Shigisan)</div><div class="event-sub">Note: 45–60 min from Nara Park by bus — map the route in advance.</div><div class="tags"><span class="tag shrine">Off the beaten path</span><span class="tag note">Map bus route in advance</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:00pm</div><div><div class="event-title">Lunch — Naramachi district</div><div class="tags"><span class="tag food">Kakinoha-zushi — local specialty</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:30pm</div><div><div class="event-title">Return to Kyoto</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">5:00pm</div><div><div class="event-title">Coffee & rest</div><div class="tags"><span class="tag food">Banana crusted toast</span><span class="tag option">Kafe Kosen</span><span class="tag option">Dan Dan Cafe</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:30pm</div><div><div class="event-title">Dinner — Gyoza Taizou</div><div class="tags"><span class="tag food">Signature + green onion gyoza</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('k24')"><span class="day-date">Sat 10/24 — Fushimi Inari + Arashiyama</span><span class="day-sub" style="margin-left:8px">Fushimi Inari · Bamboo Grove · Pontocho dinner</span><span class="day-toggle" id="k24-t">▸</span></div><div class="day-body" id="k24" style="display:none"><div class="time-row"><div class="time-label">6:30am</div><div><div class="event-title">Fushimi Inari — early hike</div><div class="event-sub">10,000 torii gates. 6:30am Saturday is essential.</div><div class="tags"><span class="tag shrine">10,000 torii gates</span><span class="tag note">6:30am Saturday — critical</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">9:30am</div><div><div class="event-title">Arashiyama Bamboo Grove</div><div class="tags"><span class="tag romantic">Most romantic spot in Kyoto</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:30am</div><div><div class="event-title">ARABICA Coffee — riverside</div><div class="tags"><span class="tag food">ARABICA coffee</span><span class="tag romantic">River views</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:00pm</div><div><div class="event-title">Lunch — Katsukura (crispy pork katsu)</div><div class="tags"><span class="tag food">Crispy pork katsu</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">2:00pm</div><div><div class="event-title">Rest + Dessert — IMO Pippi</div><div class="tags"><span class="tag food">Sweet potato ice cream</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">7:00pm</div><div><div class="event-title">Dinner — Pontocho Alley (upscale pick)</div><div class="event-sub">Big romantic Kyoto dinner. Lantern-lit lane overlooking Kamo River.</div><div class="tags"><span class="tag food">Upscale dinner</span><span class="tag romantic">Best cap to best day</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('k25')"><span class="day-date">Sun 10/25 — Last Full Day in Kyoto</span><span class="day-sub" style="margin-left:8px">Nishiki Market · Philosopher's Path · Ramen Baraya · Late night Sadakazu</span><span class="day-toggle" id="k25-t">▸</span></div><div class="day-body" id="k25" style="display:none"><div class="time-row"><div class="time-label">9:00am</div><div><div class="event-title">Nishiki Market</div><div class="event-sub">500-year-old covered food market. Graze the whole length.</div><div class="tags"><span class="tag food">500yr market</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Coffee — ACTUAL KYOTO Cafe</div><div class="tags"><span class="tag food">Specialty coffee</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:00pm</div><div><div class="event-title">Lunch — Kyoto Engine Ramen</div><div class="tags"><span class="tag food">Kyoto ramen</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">3:00pm</div><div><div class="event-title">Philosopher's Path</div><div class="event-sub">Canal-side maple tree walk — one of Kyoto's most beautiful fall strolls.</div><div class="tags"><span class="tag romantic">Fall foliage canal walk</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">6:30pm</div><div><div class="event-title">Dinner — Ramen Baraya</div><div class="event-sub">Cash only, reservations required, loved by locals.</div><div class="tags"><span class="tag food">Locals' favorite</span><span class="tag note">Cash only · Reservations required</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00pm</div><div><div class="event-title">Late night — Kyoto Ramen Sadakazu</div><div class="event-sub">Opens 10pm, cash only, until sold out.</div><div class="tags"><span class="tag food">10pm–sell out</span><span class="tag note">Cash only</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('k26')"><span class="day-date">Mon 10/26 — Check-Out → Tokyo 2</span><span class="day-sub" style="margin-left:8px">Breakfast · Takkyubin bags · Shinkansen · Shinjuku · Ayano Bar</span><span class="day-toggle" id="k26-t">▸</span></div><div class="day-body" id="k26" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Breakfast — Dan Dan Cafe</div><div class="tags"><span class="tag food">Last Kyoto coffee</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">11:00am</div><div><div class="event-title">Check out — OMO5 Kyoto Sanjo</div><div class="event-sub">Forward bags to Shinjuku Airbnb via Takkyubin — ask concierge night before. Travel light on Shinkansen.</div><div class="tags"><span class="tag note">Check out 11am</span><span class="tag note">Forward bags to Shinjuku via Takkyubin</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:30pm</div><div><div class="event-title">Shinkansen to Tokyo — Green Car</div><div class="tags"><span class="tag note">SmartEX app · Green Car</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">4:00pm</div><div><div class="event-title">Check in — Airbnb Shinjuku</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">6:30pm</div><div><div class="event-title">Dinner — Hikiniku</div><div class="tags"><span class="tag food">Premium burger rice</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30pm</div><div><div class="event-title">Ayano Bar</div><div class="tags"><span class="tag romantic">Cozy 12-seat bar</span><span class="tag note">Cash only</span></div></div></div></div></div>
+  </div>
+
+  <!-- TOKYO 2 -->
+  <div class="section">
+    <div class="section-header"><span class="city-badge bt">Tokyo 2</span><span class="section-title-serif">Airbnb — Shinjuku</span><span class="hotel-info">10/26 → 10/28</span></div>
+    <div class="day-block"><div class="day-header" onclick="tog('t27')"><span class="day-date">Tue 10/27 — Last Full Day in Japan</span><span class="day-sub" style="margin-left:8px">Senso-ji · Tsukiji · Massage · Shopping · Omoide · Mimasu Sushi · Jazz</span><span class="day-toggle" id="t27-t">▸</span></div><div class="day-body" id="t27" style="display:none"><div class="time-row"><div class="time-label">7:00am</div><div><div class="event-title">Senso-ji Temple — Asakusa</div><div class="event-sub">7am = golden light, no crowds, lanterns glowing.</div><div class="tags"><span class="tag shrine">7am — magical</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:30am</div><div><div class="event-title">Breakfast — Onigiri Asakusa Yadoroku</div><div class="tags"><span class="tag food">Tokyo's oldest onigiri</span><span class="tag note">Cash only</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00am</div><div><div class="event-title">Tsukiji Fish Market</div><div class="tags"><span class="tag food">Tuna flights</span><span class="tag food">Wagyu spears</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">12:00pm</div><div><div class="event-title">Mominoki House Ueno — massage cafe</div><div class="event-sub">Foot baths, drinks, massage services. Near Ueno.</div><div class="tags"><span class="tag romantic">Foot bath + massage</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">2:00pm</div><div><div class="event-title">Shopping — Ginza then Shinjuku</div><div class="event-sub">Fu Wa Ri, Mikura, Dengama. Super Bookoff Bazar for thrifting.</div><div class="tags"><span class="tag note">Coin locker at Shinjuku Station</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">4:30pm</div><div><div class="event-title">Omoide Yokocho</div><div class="tags"><span class="tag food">Yakitori</span><span class="tag romantic">Most atmospheric alley</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">6:00pm</div><div><div class="event-title">Golden Gai bar crawl</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">8:00pm</div><div><div class="event-title">Final dinner — Mimasu Sushi</div><div class="tags"><span class="tag food">Omakase sushi</span><span class="tag romantic">Final dinner in Japan</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00pm</div><div><div class="event-title">Last night — Jazz & cocktails</div><div class="tags"><span class="tag romantic">Last night of honeymoon</span><span class="tag option">Banten Bar</span><span class="tag option">Jazz Polkadots</span></div></div></div></div></div>
+
+    <div class="day-block"><div class="day-header" onclick="tog('t28')"><span class="day-date">Wed 10/28 — Fly Home</span><span class="day-sub" style="margin-left:8px">Bakery breakfast · Check out · Shopping · Haneda</span><span class="day-toggle" id="t28-t">▸</span></div><div class="day-body" id="t28" style="display:none"><div class="time-row"><div class="time-label">8:00am</div><div><div class="event-title">Breakfast — last Japanese bakery</div><div class="tags"><span class="tag option">Truffle Bakery</span><span class="tag option">Flour+Water Nakameguro</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:00am</div><div><div class="event-title">Check out — Shinjuku Airbnb</div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">10:30am</div><div><div class="event-title">Last shopping — Shinjuku area</div><div class="tags"><span class="tag note">Coin locker at Shinjuku Station</span></div></div></div><div class="divider"></div><div class="time-row"><div class="time-label">1:30pm</div><div><div class="event-title">Head to Haneda Airport</div><div class="tags"><span class="tag note">Depart by 1:30pm · Flight 4:50pm JST</span></div></div></div></div></div>
+  </div>
+  <div class="footer">Japan Honeymoon · October 13–28, 2026 · IAD → HND 🇯🇵</div>
+</div>
+</div>
+
+<!-- ==================== CHECKLIST ==================== -->
+<div class="tab-panel" id="tab-checklist">
+<div class="page">
+  <div class="eyebrow">Japan Honeymoon · October 2026</div>
+  <h1>Booking <em>Checklist</em></h1>
+  <p class="header-sub">Click any item to mark it done.</p>
+  <div class="prog-wrap">
+    <div class="prog-text"><strong id="dc">0</strong> of 21 done</div>
+    <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+    <div class="pct" id="pl">0%</div>
+  </div>
+  <div class="alert">
+    <div class="alert-title">⚠ All restaurants open bookings 2–3 months in advance</div>
+    <div class="alert-sub">You cannot book these now. Set calendar reminders — book the moment the window opens. Fall foliage season fills fast.</div>
+    <div class="window-grid">
+      <div class="win"><div class="win-label">Reminder: July 16</div><div class="win-date">Oct 16 dinner</div><div class="win-rest">Shishikura — A5 Wagyu</div></div>
+      <div class="win"><div class="win-label">Reminder: July 22</div><div class="win-date">Oct 22 dinner</div><div class="win-rest">Yakiniku Gosyu</div></div>
+      <div class="win"><div class="win-label">Reminder: July 24</div><div class="win-date">Oct 24 dinner</div><div class="win-rest">Pontocho upscale</div></div>
+      <div class="win"><div class="win-label">Reminder: July 25</div><div class="win-date">Oct 25 dinner</div><div class="win-rest">Ramen Baraya</div></div>
+      <div class="win"><div class="win-label">Reminder: July 27</div><div class="win-date">Oct 27 dinner</div><div class="win-rest">Mimasu Sushi</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Book now — no window restriction</div>
+    <div class="item" id="i1" onclick="tog2(1)"><div class="check" id="c1"></div><div><div class="item-title">TeamLab Planets — Toyosu, Tokyo (10/16)</div><div class="item-sub">The bucket list TeamLab — walk-through water rooms. Book tickets online in advance.</div><div class="item-note">teamlab.art/e/planets/</div></div><span class="badge badge-red">Book today</span></div>
+    <div class="item" id="i2" onclick="tog2(2)"><div class="check" id="c2"></div><div><div class="item-title">Fufu Kawaguchiko — Mt. Fuji ryokan</div><div class="item-sub">Hotels book independently of restaurant windows — book now.</div><div class="item-note">fufukawaguchiko.jp/en/</div></div><span class="badge badge-red">Book today</span></div>
+    <div class="item done" id="i3" onclick="tog2(3)"><div class="check done" id="c3"></div><div><div class="item-title">Kibune Kawasaki — removed</div><div class="item-sub">Already fully booked. Replaced with Pontocho upscale dinner on 10/24.</div></div><span class="badge badge-gray">N/A</span></div>
+    <div class="item" id="i4" onclick="tog2(4)"><div class="check" id="c4"></div><div><div class="item-title">PokéPark KANTO tickets</div><div class="item-sub">Lottery-based ticketing. Check international visitor process at official site now.</div><div class="item-note">pokepark-kanto.co.jp</div></div><span class="badge badge-red">Book today</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Hotels — confirm now</div>
+    <div class="item" id="i5" onclick="tog2(5)"><div class="check" id="c5"></div><div><div class="item-title">OMO5 Kyoto Sanjo by Hoshino Resorts</div><div class="item-sub">Hoshino properties book out in peak season.</div></div><span class="badge badge-red">Confirm now</span></div>
+    <div class="item" id="i6" onclick="tog2(6)"><div class="check" id="c6"></div><div><div class="item-title">Hyatt Regency Tokyo</div><div class="item-sub">Fall peak season — confirm if not already locked in.</div></div><span class="badge badge-red">Confirm now</span></div>
+    <div class="item" id="i7" onclick="tog2(7)"><div class="check" id="c7"></div><div><div class="item-title">Shinjuku Airbnb</div><div class="item-sub">10/26–10/28. Confirm this is locked.</div></div><span class="badge badge-red">Confirm now</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Restaurants — set reminders, book in summer 2026</div>
+    <div class="item" id="i8" onclick="tog2(8)"><div class="check" id="c8"></div><div><div class="item-title">Shishikura — A5 Wagyu (10/16)</div><div class="item-sub">Books open ~3 months out.</div><div class="item-note">📅 Set reminder: July 16, 2026</div></div><span class="badge badge-amber">Book July 16</span></div>
+    <div class="item" id="i9" onclick="tog2(9)"><div class="check" id="c9"></div><div><div class="item-title">Yakiniku Gosyu — Kyoto (10/22)</div><div class="item-sub">Books open ~3 months out.</div><div class="item-note">📅 Set reminder: July 22, 2026</div></div><span class="badge badge-amber">Book July 22</span></div>
+    <div class="item" id="i10" onclick="tog2(10)"><div class="check" id="c10"></div><div><div class="item-title">Pontocho upscale dinner (10/24)</div><div class="item-sub">Research and pick your specific restaurant now, book when window opens.</div><div class="item-note">📅 Set reminder: July 24, 2026</div></div><span class="badge badge-amber">Book July 24</span></div>
+    <div class="item" id="i11" onclick="tog2(11)"><div class="check" id="c11"></div><div><div class="item-title">Ramen Baraya — Kyoto (10/25)</div><div class="item-sub">Reservations required, cash only.</div><div class="item-note">📅 Set reminder: July 25, 2026</div></div><span class="badge badge-amber">Book July 25</span></div>
+    <div class="item" id="i12" onclick="tog2(12)"><div class="check" id="c12"></div><div><div class="item-title">Mimasu Sushi — Tokyo (10/27)</div><div class="item-sub">Good omakase sushi fills up fast in peak fall season.</div><div class="item-note">📅 Set reminder: July 27, 2026</div></div><span class="badge badge-amber">Book July 27</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Golf — waiting on response</div>
+    <div class="item" id="i13" onclick="tog2(13)"><div class="check" id="c13"></div><div><div class="item-title">Fuji Golf Course — tee time 10/20 ~7:45am</div><div class="item-sub">Waiting on Gransfield. Follow up if no response by end of week.</div></div><span class="badge badge-blue">Waiting — follow up Fri</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Before you leave the US</div>
+    <div class="item" id="i14" onclick="tog2(14)"><div class="check" id="c14"></div><div><div class="item-title">Shinkansen — Green Car seats (both legs)</div><div class="item-sub">Use SmartEX app — don't buy JR Pass (doesn't pay off for one round trip after 2023 price hikes). Book Green Car both ways.</div><div class="item-note">smartex.jp · Download app now</div></div><span class="badge badge-amber">Download SmartEX app</span></div>
+    <div class="item" id="i15" onclick="tog2(15)"><div class="check" id="c15"></div><div><div class="item-title">Pocket WiFi rental — carrier lock confirmed</div><div class="item-sub">Book before departure — pick up at Haneda, drop off before flying home. ~$5–8/day unlimited.</div><div class="item-note">Ninja WiFi (ninjaroam.com) · IIJmio · Global WiFi</div></div><span class="badge badge-purple">Book before departure</span></div>
+    <div class="item" id="i16" onclick="tog2(16)"><div class="check" id="c16"></div><div><div class="item-title">Luggage forwarding (Takkyubin) — learn how it works</div><div class="item-sub">Forward bags hotel-to-hotel at every transition. Ask concierge the night before each time (~$15/bag). Do at: Hyatt→Kyoto (10/19), Fufu→Kyoto (10/21), OMO5→Shinjuku (10/26). Pack a small overnight bag each time.</div><div class="item-note">Yamato Transport (Kuroneko) · Hotel concierge handles it</div></div><span class="badge badge-purple">Note for Japan</span></div>
+    <div class="item" id="i17" onclick="tog2(17)"><div class="check" id="c17"></div><div><div class="item-title">Visit Japan Web — customs QR code</div><div class="item-sub">Register for faster customs clearance at Haneda. Fill in 1–2 weeks before flight.</div><div class="item-note">vjw-lp.digital.go.jp</div></div><span class="badge badge-gray">1–2 weeks before flight</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Do in Japan</div>
+    <div class="item" id="i18" onclick="tog2(18)"><div class="check" id="c18"></div><div><div class="item-title">Nikko train tickets — buy evening of 10/16</div><div class="item-sub">Tobu Asakusa Station. Buy night before. Request left-side seats.</div></div><span class="badge badge-gray">Buy 10/16 in Japan</span></div>
+    <div class="item" id="i19" onclick="tog2(19)"><div class="check" id="c19"></div><div><div class="item-title">Exchange money at 7-Eleven ATM</div><div class="item-sub">Best rates. Many places cash only — stock up on arrival.</div></div><span class="badge badge-gray">On arrival 10/14</span></div>
+    <div class="item" id="i20" onclick="tog2(20)"><div class="check" id="c20"></div><div><div class="item-title">Confirm Oedo Antique Market — 10/18</div><div class="item-sub">Confirmed 3rd Sunday of October = Oct 18 ✓. Check official site closer to trip.</div><div class="item-note">antique-market.jp/english/ · 9am–4pm · Free · Cash only</div></div><span class="badge badge-green">Confirmed 10/18 ✓</span></div>
+    <div class="item" id="i21" onclick="tog2(21)"><div class="check" id="c21"></div><div><div class="item-title">Screenshot Visit Japan Web QR codes before landing</div><div class="item-sub">WiFi at Haneda can be spotty right at the gate. Screenshot your QR codes so they work offline.</div></div><span class="badge badge-gray">Before landing</span></div>
+  </div>
+  <div class="footer">Japan Honeymoon · October 13–28, 2026 · IAD → HND</div>
+</div>
+</div>
+
+<!-- ==================== SHOPPING LIST ==================== -->
+<div class="tab-panel" id="tab-shopping">
+<div class="page">
+  <div class="eyebrow">Japan Honeymoon · October 2026</div>
+  <h1>Shopping <em>List</em></h1>
+  <p class="header-sub">Tap any item to mark it bought. Add your own below each category.</p>
+
+  <!-- BAGS & ACCESSORIES -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Bags & Accessories</div></div>
+    <div class="shop-items" id="cat-bags">
+      <div class="shop-item" id="s1" onclick="togS(1)"><div class="shop-check" id="sc1"></div><div><div class="shop-item-title">Luxury bag / purse</div><div class="shop-item-sub">Ginza is your best bet — Chanel, Louis Vuitton, Gucci all have flagship stores. Also check <span class="store-pill">Isetan Shinjuku</span> luxury floor.</div></div></div>
+      <div class="shop-item" id="s2" onclick="togS(2)"><div class="shop-check" id="sc2"></div><div><div class="shop-item-title">Vintage bags</div><div class="shop-item-sub">Tokyo has incredible vintage luxury — try <span class="store-pill">Komehyo Shinjuku</span> and <span class="store-pill">Brand Off Ginza</span> for pre-owned designer at great prices.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-bags" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-bags','add-bags')"><button class="add-btn" onclick="addItem('cat-bags','add-bags')">+ Add</button></div>
+  </div>
+
+  <!-- CLOTHING -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Clothing</div></div>
+    <div class="shop-items" id="cat-clothing">
+      <div class="shop-item" id="s3" onclick="togS(3)"><div class="shop-check" id="sc3"></div><div><div class="shop-item-title">Vintage clothing</div><div class="shop-item-sub"><span class="store-pill">Super Bookoff Bazar</span> for thrift. <span class="store-pill">Shimokitazawa district</span> is Tokyo's vintage mecca — dense with curated secondhand stores, well worth a half-day.</div></div></div>
+      <div class="shop-item" id="s4" onclick="togS(4)"><div class="shop-check" id="sc4"></div><div><div class="shop-item-title">Japanese clothing / fashion</div><div class="shop-item-sub"><span class="store-pill">Isetan Shinjuku</span> for high-end Japanese designers. <span class="store-pill">Harajuku / Omotesando</span> for everything from streetwear to luxury.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-clothing" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-clothing','add-clothing')"><button class="add-btn" onclick="addItem('cat-clothing','add-clothing')">+ Add</button></div>
+  </div>
+
+  <!-- SKINCARE & MAKEUP -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Skincare & Makeup</div></div>
+    <div class="shop-items" id="cat-beauty">
+      <div class="shop-item" id="s5" onclick="togS(5)"><div class="shop-check" id="sc5"></div><div><div class="shop-item-title">@cosme TOKYO — Harajuku flagship</div><div class="shop-item-sub">THE place to start. 3 floors, 25,000 products from 600 brands ranked by real Japanese consumer reviews. Shows you exactly what's trending. <span class="store-pill">1 min from Harajuku Station</span></div></div></div>
+      <div class="shop-item" id="s6" onclick="togS(6)"><div class="shop-check" id="sc6"></div><div><div class="shop-item-title">Isetan Shinjuku — Beauty Apothecary</div><div class="shop-item-sub">Best mix of luxury and indie J-beauty brands. The Beauty Apothecary section has niche brands you won't find anywhere else. Staff are incredibly knowledgeable. <span class="store-pill">Connected to Shinjuku Station</span></div></div></div>
+      <div class="shop-item" id="s7" onclick="togS(7)"><div class="shop-check" id="sc7"></div><div><div class="shop-item-title">Mitsukoshi Ginza — luxury beauty hall</div><div class="shop-item-sub">For premium Japanese brands like HAKUHODO brushes, Suqqu, and Episteme that you can't find at standard department stores. <span class="store-pill">Ginza</span></div></div></div>
+      <div class="shop-item" id="s8" onclick="togS(8)"><div class="shop-check" id="sc8"></div><div><div class="shop-item-title">Matsumoto Kiyoshi drugstore</div><div class="shop-item-sub">Everywhere in Tokyo. Best for affordable cult favorites — Hada Labo, Canmake, KATE, Biore, Shiseido drugstore line. Great prices and tax-free shopping. <span class="budget-pill">Budget-friendly</span></div></div></div>
+      <div class="shop-item" id="s9" onclick="togS(9)"><div class="shop-check" id="sc9"></div><div><div class="shop-item-title">Shiseido flagship — Ginza</div><div class="shop-item-sub">The mothership. Try the latest Shiseido products, get makeup lessons and skin analysis. <span class="store-pill">1 min from Ginza Station</span></div></div></div>
+      <div class="shop-item" id="s10" onclick="togS(10)"><div class="shop-check" id="sc10"></div><div><div class="shop-item-title">Ainz & Tulpe — Shinjuku</div><div class="shop-item-sub">Elevated drugstore experience. Curated J-beauty + exclusive brands like Ayura and Dazzshop. Bubble tea cafe on 2nd floor. <span class="store-pill">Across from Shinjuku Station East Exit</span></div></div></div>
+      <div class="shop-item" id="s11" onclick="togS(11)"><div class="shop-check" id="sc11"></div><div><div class="shop-item-title">Specific products to look for</div><div class="shop-item-sub">Hada Labo toner, Canmake sunscreen primer, SK-II Pitera Essence, Suqqu foundation, HAKUHODO makeup brushes, Attenir cleansing oil (Japan's #1 ranked 2025).</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-beauty" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-beauty','add-beauty')"><button class="add-btn" onclick="addItem('cat-beauty','add-beauty')">+ Add</button></div>
+  </div>
+
+  <!-- KNIVES -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Chef's Knife</div></div>
+    <div class="shop-items" id="cat-knives">
+      <div class="shop-item" id="s12" onclick="togS(12)"><div class="shop-check" id="sc12"></div><div><div class="shop-item-title">Japanese chef's knife — under $400</div><div class="shop-item-sub">Totally doable. Best areas: <span class="store-pill">Kappabashi "Kitchen Town" — Asakusa</span> (street full of professional kitchen supply stores) and <span class="store-pill">Tsukiji outer market</span>. Look for brands like Masamoto, Misono, or Sakai Takayuki. A solid 210mm gyuto from a reputable maker runs $100–$300.</div><div class="shop-item-note">Kappabashi is 5 min walk from Senso-ji — perfect to hit on 10/27 morning</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-knives" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-knives','add-knives')"><button class="add-btn" onclick="addItem('cat-knives','add-knives')">+ Add</button></div>
+  </div>
+
+  <!-- PLANTS & BONSAI -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Plants & Bonsai</div></div>
+    <div class="shop-items" id="cat-plants">
+      <div class="shop-item" id="s13" onclick="togS(13)"><div class="shop-check" id="sc13"></div><div><div class="shop-item-title">Bonsai</div><div class="shop-item-sub"><span class="store-pill">Ueno Green Club</span> and the shops around <span class="store-pill">Omiya Bonsai Village</span> (45 min from Tokyo) are the best. Also check <span class="store-pill">Shinjuku Gyoen garden shop</span> for smaller starter bonsai. Note: bringing plants into the US requires a USDA phytosanitary certificate — buy from a shop that can provide this for international buyers.</div><div class="shop-item-note">⚠ Check US customs rules before buying — some species restricted</div></div></div>
+      <div class="shop-item" id="s14" onclick="togS(14)"><div class="shop-check" id="sc14"></div><div><div class="shop-item-title">Bonsai tools & supplies</div><div class="shop-item-sub">Easier to bring home than a live tree. <span class="store-pill">Kappabashi</span> has good tool shops. Also <span class="store-pill">Tokyu Hands</span> department store.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-plants" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-plants','add-plants')"><button class="add-btn" onclick="addItem('cat-plants','add-plants')">+ Add</button></div>
+  </div>
+
+  <!-- VINTAGE GOLF -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Vintage Golf</div></div>
+    <div class="shop-items" id="cat-golf">
+      <div class="shop-item" id="s15" onclick="togS(15)"><div class="shop-check" id="sc15"></div><div><div class="shop-item-title">Vintage golf clubs / gear</div><div class="shop-item-sub">Japan has an incredible vintage golf scene. <span class="store-pill">2nd Street (2ndSTREET)</span> chain has multiple Tokyo locations with great vintage sports finds. <span class="store-pill">Super Bookoff Bazar</span> also carries sports gear. Dedicated golf resale shops cluster around <span class="store-pill">Shinjuku and Ikebukuro</span>.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-golf" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-golf','add-golf')"><button class="add-btn" onclick="addItem('cat-golf','add-golf')">+ Add</button></div>
+  </div>
+
+  <!-- SOCCER JERSEYS -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Soccer Jerseys</div></div>
+    <div class="shop-items" id="cat-soccer">
+      <div class="shop-item" id="s16" onclick="togS(16)"><div class="shop-check" id="sc16"></div><div><div class="shop-item-title">Soccer jerseys — Japanese clubs & international</div><div class="shop-item-sub"><span class="store-pill">Alpen Sports Shinjuku</span> (huge multi-floor sports store) and <span class="store-pill">Sports Authority Shibuya</span> for Japanese national team and J-League jerseys. For vintage/retro jerseys try <span class="store-pill">Harajuku vintage shops</span> and <span class="store-pill">2nd Street</span>.</div></div></div>
+      <div class="shop-item" id="s17" onclick="togS(17)"><div class="shop-check" id="sc17"></div><div><div class="shop-item-title">Japan national team jersey</div><div class="shop-item-sub">The Samurai Blue kit is iconic — widely available at sports stores across Tokyo. <span class="budget-pill">~¥10,000–¥15,000</span></div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-soccer" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-soccer','add-soccer')"><button class="add-btn" onclick="addItem('cat-soccer','add-soccer')">+ Add</button></div>
+  </div>
+
+  <!-- POKÉMON -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Pokémon</div></div>
+    <div class="shop-items" id="cat-pokemon">
+      <div class="shop-item" id="s18" onclick="togS(18)"><div class="shop-check" id="sc18"></div><div><div class="shop-item-title">Pokémon Center Tokyo DX — Ikebukuro</div><div class="shop-item-sub">The flagship Pokémon store. Exclusive merch, plushies, TCG cards, clothing. You'll also get merch at PokéPark KANTO itself on 10/18. <span class="store-pill">Sunshine City Mall, Ikebukuro</span></div></div></div>
+      <div class="shop-item" id="s19" onclick="togS(19)"><div class="shop-check" id="sc19"></div><div><div class="shop-item-title">Pokémon TCG cards</div><div class="shop-item-sub">Japanese card packs are cheaper than US versions and often have Japan-exclusive sets. <span class="store-pill">Pokémon Center</span> and <span class="store-pill">Yodobashi Camera</span> both carry them.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-pokemon" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-pokemon','add-pokemon')"><button class="add-btn" onclick="addItem('cat-pokemon','add-pokemon')">+ Add</button></div>
+  </div>
+
+  <!-- MISCELLANEOUS -->
+  <div class="shop-section">
+    <div class="shop-header"><div class="shop-section-title">Everything Else</div></div>
+    <div class="shop-items" id="cat-misc">
+      <div class="shop-item" id="s20" onclick="togS(20)"><div class="shop-check" id="sc20"></div><div><div class="shop-item-title">Oedo Antique Market finds (10/18)</div><div class="shop-item-sub">Vintage Japanese clothing, ornaments, ceramics, ukiyo-e prints, watches. Cash only. Go early — vendors start closing at 3pm.</div></div></div>
+      <div class="shop-item" id="s21" onclick="togS(21)"><div class="shop-check" id="sc21"></div><div><div class="shop-item-title">Omiyage (souvenir gifts)</div><div class="shop-item-sub">Japanese confectionery, matcha products, sake, chopstick sets. Best selection at <span class="store-pill">Narita/Haneda airport</span> and <span class="store-pill">Tokyo Station character street</span>.</div></div></div>
+    </div>
+    <div class="add-item-row"><input class="add-input" id="add-misc" placeholder="Add item..." onkeydown="if(event.key==='Enter') addItem('cat-misc','add-misc')"><button class="add-btn" onclick="addItem('cat-misc','add-misc')">+ Add</button></div>
+  </div>
+
+  <div class="footer">Japan Honeymoon · October 13–28, 2026 🛍</div>
+</div>
+</div>
+
+<script>
+// TAB SWITCHING
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ITINERARY DROPDOWNS
+function tog(id) {
+  var el = document.getElementById(id);
+  var ar = document.getElementById(id + '-t');
+  if (!el || !ar) return;
+  var hidden = el.style.display === 'none' || el.style.display === '';
+  el.style.display = hidden ? 'flex' : 'none';
+  ar.textContent = hidden ? '▾' : '▸';
+}
+
+// CHECKLIST
+var cl_states = { 3: true };
+var cl_total = 21;
+function tog2(n) {
+  cl_states[n] = !cl_states[n];
+  var item = document.getElementById('i' + n);
+  var check = document.getElementById('c' + n);
+  if (cl_states[n]) { item.classList.add('done'); check.classList.add('done'); }
+  else { item.classList.remove('done'); check.classList.remove('done'); }
+  updateCL();
+}
+function updateCL() {
+  var done = 0;
+  for (var k in cl_states) { if (cl_states[k]) done++; }
+  var pct = Math.round((done / cl_total) * 100);
+  document.getElementById('pf').style.width = pct + '%';
+  document.getElementById('dc').textContent = done;
+  document.getElementById('pl').textContent = pct + '%';
+}
+updateCL();
+
+// SHOPPING LIST
+var shop_states = {};
+var shop_counter = 100;
+function togS(n) {
+  shop_states[n] = !shop_states[n];
+  var item = document.getElementById('s' + n);
+  var check = document.getElementById('sc' + n);
+  if (!item) return;
+  if (shop_states[n]) { item.classList.add('done'); check.classList.add('done'); }
+  else { item.classList.remove('done'); check.classList.remove('done'); }
+}
+function addItem(catId, inputId) {
+  var input = document.getElementById(inputId);
+  var val = input.value.trim();
+  if (!val) return;
+  shop_counter++;
+  var n = shop_counter;
+  var cat = document.getElementById(catId);
+  var div = document.createElement('div');
+  div.className = 'shop-item';
+  div.id = 's' + n;
+  div.onclick = function() { togS(n); };
+  div.innerHTML = '<div class="shop-check" id="sc' + n + '"></div><div><div class="shop-item-title">' + val + '</div></div>';
+  cat.appendChild(div);
+  input.value = '';
+}
+</script>
+</body>
+</html>
